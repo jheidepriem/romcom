@@ -125,7 +125,10 @@ function saveCover(event) {
       savedCovers.push(currentCover);
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 function deleteSavedCovers() {
     for(i = 0; i < savedCovers.length; i++) {
       if(savedCovers[i].id === Number(event.target.parentNode.id)) {
