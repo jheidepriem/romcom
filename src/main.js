@@ -13,10 +13,10 @@ var randomCoverButton = document.querySelector('.random-cover-button')
 var saveCoverButton = document.querySelector('.save-cover-button')
 var viewSavedCoversButton = document.querySelector('.view-saved-button')
 var makeYourOwnCoverButton = document.querySelector('.make-new-button')
-var formInputCover = document.querySelector('.user-cover')
-var formInputTitle = document.querySelector('.user-title')
-var formInputTag1 = document.querySelector('.user-desc1')
-var formInputTag2 = document.querySelector('.user-desc2')
+var formInputCover = document.querySelector('#cover')
+var formInputTitle = document.querySelector('#title')
+var formInputTag1 = document.querySelector('#descriptor1')
+var formInputTag2 = document.querySelector('#descriptor2')
 var makeMyBookButton = document.querySelector('.create-new-book-button')
 
 // We've provided a few variables below
@@ -35,6 +35,7 @@ homeButton.addEventListener(`click`, viewHome)
 viewSavedCoversButton.addEventListener(`click`, viewSavedCovers)
 makeMyBookButton.addEventListener('click', makeBookCover)
 saveCoverButton.addEventListener('click', saveCover)
+savedCoversPage.addEventListener(`dblclick`, deleteSavedCovers)
 
 // Create your event handlers and other functions here 👇
 
@@ -58,6 +59,7 @@ function displayCover() {
 function viewForm() {
   homePage.style.display = "none";
   formPage.style.display = "block";
+  savedCoversPage.style.display = "none";
   homeButton.style.display = "block";
   randomCoverButton.style.display = "none";
   saveCoverButton.style.display = "none";
@@ -94,13 +96,12 @@ function viewSavedCovers() {
 </span>
      `
    }
-
 }
 
 function makeBookCover(event) {
 event.preventDefault()
 
-  currentCover = new Cover (
+    currentCover = new Cover (
     formInputCover.value,
     formInputTitle.value,
     formInputTag1.value,
@@ -115,21 +116,23 @@ event.preventDefault()
   displayCover()
 
   homePage.setAttribute('style', 'display: ')
-  formPage.className = 'view form-view hidden'
+  formPage.style.display = "none";
 }
 
 function saveCover(event) {
   event.preventDefault()
-  if (!savedCovers.includes(currentCover)) {
-console.log(currentCover)
-console.log(savedCovers)
-    savedCovers.push(currentCover);
+    if (!savedCovers.includes(currentCover)) {
+      savedCovers.push(currentCover);
   }
-
 }
 
-function displaySavedCovers() {
-
+function deleteSavedCovers() {
+    for(i = 0; i < savedCovers.length; i++) {
+      if(savedCovers[i].id === Number(event.target.parentNode.id)) {
+        savedCovers.splice(i, 1);
+      }
+viewSavedCovers()
+    };
 }
 // We've provided one function to get you started
 function getRandomIndex(array) {
