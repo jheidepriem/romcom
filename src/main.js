@@ -125,6 +125,7 @@ function saveCover(event) {
       savedCovers.push(currentCover);
   }
 }
+
 function deleteSavedCovers() {
     for(i = 0; i < savedCovers.length; i++) {
       if(savedCovers[i].id === Number(event.target.parentNode.id)) {
@@ -132,6 +133,7 @@ function deleteSavedCovers() {
       }
 viewSavedCovers()
     };
+
 }
 // We've provided one function to get you started
 function getRandomIndex(array) {
